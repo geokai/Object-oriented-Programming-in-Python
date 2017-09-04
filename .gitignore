@@ -1,0 +1,15 @@
+# OS stuff:
+.DS_Store
+
+# Directories:
+#Datasets/
+KB_ShrtCuts_Notes/
+Tutors_Notebooks/
+Other_Students_Notebooks/
+Course_content
+Course_Notebooks/superceded/
+
+.ipynb_checkpoints/
+
+# Files:
+*.html
