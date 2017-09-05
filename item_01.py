@@ -16,6 +16,10 @@ class Item():
         """returns the Item description"""
         return self.description
 
+    def find_item(self):
+        """method to find item"""
+        pass
+
     def use_item(self):
         """method to perform action with Item"""
         pass
