@@ -4,11 +4,16 @@
 class Character():
     """Character class"""
 
+    characters = []
+    num_of_chractrs = 0
+
     # Create a character
     def __init__(self, char_name, char_description):
         self.name = char_name
         self.description = char_description
         self.conversation = None
+        Character.characters.append(self.name)
+        Character.num_of_chractrs += 1
 
     # Describe this character
     def describe(self):
@@ -38,4 +43,23 @@ class Character():
         if combat_item is None:     # ?..could also be, if not combat_item: ..?
             print(self.name + " doesn't want to fight with you.")
         else:
-            print("Dave fights you with a " + combat_item + "!")
+            print(self.name + " fights you with a " + combat_item + "!")
+
+
+class Enemy(Character):
+    """Enemy class inherits from Character"""
+
+    def __init__(self, char_name, char_description, *, weapons=None):
+        super().__init__(char_name, char_description)
+        if weapons is None:
+            self.weapons = []
+        else:
+            self.weapons = weapons
+
+    def add_weapon(self, weapon):
+        """method add a weapon item to the instances weapon list"""
+        self.weapons.append(weapon)
+
+    def get_weapons(self):
+        """returns the weapons list of the instance"""
+        return self.weapons
