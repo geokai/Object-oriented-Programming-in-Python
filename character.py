@@ -39,27 +39,53 @@ class Character():
 
     # Fight with this character
     def fight(self, *, combat_item=None):
-        """this method return a bool"""
-        if combat_item is None:     # ?..could also be, if not combat_item: ..?
-            print(self.name + " doesn't want to fight with you.")
-        else:
-            print(self.name + " fights you with a " + combat_item + "!")
+        """this method prints a message form a Character instance"""
+        _ = combat_item
+        print(self.name + " doesn't want to fight with you.")
 
 
 class Enemy(Character):
     """Enemy class inherits from Character"""
 
-    def __init__(self, char_name, char_description, *, weapons=None):
+    def __init__(self, char_name, char_description, *, weapon=None):
         super().__init__(char_name, char_description)
-        if weapons is None:
-            self.weapons = []
+        if weapon is None:
+            self.weapon = None
         else:
-            self.weapons = weapons
+            self.weapon = weapon
+        self.weakness = None
 
-    def add_weapon(self, weapon):
-        """method add a weapon item to the instances weapon list"""
-        self.weapons.append(weapon)
+    def set_weapon(self, weapon):
+        """method add a weapon item to the instances object"""
+        self.weapon = weapon
 
-    def get_weapons(self):
-        """returns the weapons list of the instance"""
-        return self.weapons
+    def get_weapon(self):
+        """returns the weapon value of the instance"""
+        if self.weapon is None:
+            print(self.name + ' has no weapons, make the most of it!!')
+        else:
+            return self.weapon
+
+    def set_weakness(self, weakness_item):
+        """set the weakness item"""
+        self.weakness = weakness_item
+
+    def get_weakness(self):
+        """returns wekness item"""
+        if self.weakness is None:
+            print(self.name + ' has no weaknesses, BEWARE!!')
+        else:
+            print(self.name + "s' weakness is " + self.weakness)
+
+    def fight(self, *, combat_item=None):
+        """fight method override"""
+        if combat_item == self.weakness:
+            print('You fend ' + self.name + ' off with ' + combat_item + '!')
+        elif combat_item == self.weapon:
+            print(self.name + ' has ' + combat_item + ' too!')
+            print("It's a draw.")
+        else:
+            print('Ha! ' + combat_item + ' does nothing against ' + \
+                    self.name + '.')
+            print(self.name + ' crushes you with ' + self.weapon + \
+                    ', puny adventurer!!')
